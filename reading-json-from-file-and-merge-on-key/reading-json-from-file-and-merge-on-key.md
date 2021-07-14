@@ -3,6 +3,7 @@
 ## Example files
 ### Json blob 1
 ```json
+{
     "subnets" : ["100.1.1.1", "100.2.2.2"],
     "name" : "bob",
     "environment" : "dev"
@@ -19,7 +20,7 @@
 ```
 
 ### Terraform
-```
+```hcl
 locals {
   inputvars = [ for f in fileset(path.module, "*.json") : jsondecode(file(f)) ]
   inputmap = {for app in toset(local.inputvars): app.name => app}
